@@ -62,30 +62,19 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
         - Destino
         - Fecha de viaje
         - Cantidad de pasajeros
-    La cotizaciónm en estado creado. retorna un ID de QUOTATION y retorna un listado de ID de Coberturas con Precios asociados.
 
-    - Un USER puede crear una reserva a partir de una COTIZACION creada asignandole un ID de Cobertura y el valor del Precio.
+        y opcionalmente puede agregar el parámetro:
+        - Categoría
 
-    - Un USER puede realizar una consulta de precios ordenados por servicio, proveedor y categoría, así como la capacidad disponible, indicando como parámetros: 
-        - Categoría
-        - Origen
-        - Destino
-        - Fecha de viaje
-        - Cantidad de pasajeros
-        Origen y Destino se deben utilizan para filtrar/buscar la(s) coberturas disponibles.
-        Si no existe cobertura se deben indicar con un mensaje de error. 
-        Tanto Servicio como Categoría pueden ser parámetros opcionales.
-   - Un USER puede realizar crear una **(QUOTATION)** a partir de la consulta de precios: 
-        - Categoría
-        - Origen
-        - Destino
-        - Fecha de viaje
-        - Cantidad de pasajeros
+        La cotización se crea en el estado "creada", retornando un ID de cotización y además retorna un listado de coberturas con precios asociados.
+
+    - Un USER puede crear una reserva a partir de una Cotización, agregándole un ID de Cobertura, un Precio, asociado a la fecha, y cambiando el estado a "reserva".
 
    - Un USER puede cambiar el estado de una cotización **(QUOTATION)** indicando como parámetros: 
         - id de cotización
         - estado de la cotización: "reserva" o "reserva cancelada".
         - para cambiar una cotización a "reserva" se debe verificar si existe capacidad para realizar la reserva, en función de la capacidad del/los vehículos asociados a la cobertura y otras reservas ya realizadas.
+        
     - Otras consideraciones: 
         - Debe almacenar la cotización con un indentificador único y el estado "creada".
         - Debe implementar validación de cambio de estado: desde "creado" solo se puede pasar a "reserva" y desde "reserva" solo se puede cambiar estado a "reserva cancelada". "reserva cancelada" es un estado final.
