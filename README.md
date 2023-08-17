@@ -45,7 +45,7 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
 
 ### Requerimiento
 
-1. Desarrolle un microservicio (ms, de ahora en adelante) de cotización de viajes en bus, basándose en el siguiente modelo ![image](diagrama.png).
+1. Desarrolle un microservicio (ms, de ahora en adelante) de cotización de viajes en bus, basándose en el siguiente modelo ![image](diagrama.png)
 2. En el sistema deben existir las siguientes entidades:
    - usuarios: **USER**, donde se individualiza al usuario que realiza la cotización.
    - lugares de origen o destino: **PLACES**, donde se almacena el listado de posibles lugares de origen o destino.
