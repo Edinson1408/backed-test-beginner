@@ -45,31 +45,33 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
 
 ### Requerimiento
 
-1. Desarrolle un microservicio (ms, de ahora en adelante) de cotización de viajes, basándose en el siguiente modelo ![image](backend%20test%20model.drawio.png).
+1. Desarrolle un microservicio (ms, de ahora en adelante) de cotización de viajes en bus, basándose en el siguiente modelo ![image](backend%20test%20model.drawio.png).
 2. En el sistema deben existir las siguientes entidades:
    - usuarios: **USER**, donde se individualiza al usuario que realiza la cotización.
    - lugares de origen o destino: **PLACES**, donde se almacena el listado de posibles lugares de origen o destino.
-   - servicios de transporte: **SERVICE**, donde se almacenana el tipo de servicio de transporte aereo o terrestre.
-   - categorías de viaje: **CATEGORY**, donde se almacenan valores asociados a confort y calidad como por ejemplo low cost, standard, premium.
-   - proveedores del servicio: **PROVIDER**, donde se almacena el nombre del proveedor del servicio como por ejemplo American Airlines o Turbus.
-   - Cobertura geográfica: **COVERAGE**, donde se almacena los trayectos origen-destino para un servicio y proveedor determinado, así como la duración del viaje en horas.
+   - categorías de viaje: **CATEGORY**, donde se almacenan valores asociados a confort y calidad como por ejemplo "standard" y  "premium".
+   - proveedores del servicio: **PROVIDER**, donde se almacena el nombre del proveedor del servicio como por ejemplo Pullman Bus o Turbus.
+   - tipo de vehiculo: **VEHICLE**, un nombre y código de vehículo así como la capacidad de pasajeros asociados a una categoría de viaje. ej.: Bus dos pisos, capacidad 40 pasajeros standar y 8 pasajeros premium.
+   - Cobertura geográfica: **COVERAGE**, donde se almacena los trayectos origen-destino para proveedor y tipo de vehículo determinado, así como la hora de inicio y duración del viaje en horas.
    - Precios: **PRICE**, donde se almacenan los precios para una determinada combinación de cobertura y categoría dentro de un rango de fechas determinado. Es decir, los precios deben considerar un periodo de vigencia.
-   - Cotización: **QUOTATION**, donde se almacenan las cotizaciones realizadas por un usuario determinado, y que considerar servicio, categoría, origen, destino, proveedor, fecha, cantidad de pasajeros y precio a pagar.
+   - Cotización: **QUOTATION**, donde se almacenan las cotizaciones realizadas por un usuario determinado, y que considera categoría, origen, destino, proveedor, fecha, cantidad de pasajeros y precio a pagar. Así mismo una cotización puede tener los estados "solicitud", "reserva", "reserva cancelada".
 3. En el sistema se deben implementar las siguientes reglas de negocio:
    - Un USER puede realizar una cotización **(QUOTATION)** indicando como parámetros: 
-        - Servicio
         - Categoría
         - Origen
         - Destino
         - Fecha de viaje
         - Cantidad de pasajeros 
     Tanto Servicio como Categoría pueden ser parámetros opcionales.
-
-   - El servicio debe retorna:
-        - Listado de precios ordenados por servicio, proveedor y categoría.
-        - Debe almacenar la cotización con un indentificador único.
+   - Un USER puede cambiar el estado de una cotización **(QUOTATION)** indicando como parámetros: 
+        - id de cotización
+        - estado de la cotización: "reserva" o "reserva cancelada".
+        - para cambiar una cotización a "reserva" se debe verificar si existe capacidad para realizar la reserva, en función de la capacidad del/los vehículos asociados a la covertura y otras reservas ya realizadas.
+   - El servicio debe retornar:
+        - Listado de precios ordenados por servicio, proveedor y categoría, así como la capacidad disponible. 
+        - Debe almacenar la cotización con un indentificador único y el estado "solicitud".
 4. Desarrolle una API que implemente:
-   - CRUD de USER, PLACE, SERVICE, CATEGORY, PROVIDER, COVERAGE, PRICE, QUOTATION.
+   - CRUD de USER, PLACE, VEHICLE, CATEGORY, PROVIDER, COVERAGE, PRICE, QUOTATION.
    - Listado de QUOTATION por: USER o PROVIDER.
    - Listado de QUOTATION dentro de un rango de fechas.
 
