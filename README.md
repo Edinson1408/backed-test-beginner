@@ -50,30 +50,44 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
    - usuarios: **USER**, donde se individualiza al usuario que realiza la cotización.
    - lugares de origen o destino: **PLACES**, donde se almacena el listado de posibles lugares de origen o destino.
    - categorías de viaje: **CATEGORY**, donde se almacenan valores asociados a confort y calidad como por ejemplo "standard" y  "premium".
-   - proveedores del servicio: **PROVIDER**, donde se almacena el nombre del proveedor del servicio como por ejemplo Pullman Bus o Turbus.
-   - vehiculo: **VEHICLE**, un nombre y código de vehículo así como la capacidad de pasajeros asociados a una categoría de viaje. ej.: Bus dos pisos, capacidad 40 pasajeros standar y 8 pasajeros premium.
-   - Cobertura geográfica: **COVERAGE**, donde se almacena los trayectos origen-destino para proveedor y vehículo determinado, así como la hora de inicio y duración del viaje en horas. **Asuma que una cobertura tiene un único vehículo asignado.**
-   - Precios: **PRICE**, donde se almacenan los precios para una determinada combinación de cobertura y categoría dentro de un rango de fechas determinado. Es decir, los precios deben considerar un periodo de vigencia.
-   - Cotización: **QUOTATION**, donde se almacenan las cotizaciones realizadas por un usuario determinado, y que considera categoría, origen, destino, proveedor, fecha, cantidad de pasajeros y precio a pagar. Así mismo una cotización puede tener los estados "creada", "reserva", "reserva cancelada".
+   - proveedores del servicio: **PROVIDER**, donde se almacena el nombre del proveedor del servicio como por ejemplo "PULLMAN BUS" o "TURBUS".
+   - vehiculo: **VEHICLE**, que contiene un nombre e indentificador de vehículo, así como la capacidad de pasajeros asociados a una categoría de viaje. ej.: Bus dos pisos, capacidad 40 pasajeros standar y 8 pasajeros premium.
+   - Cobertura geográfica: **COVERAGE**, donde se almacena los trayectos origen-destino para proveedor y vehículo determinado, así como la hora de inicio y duración del viaje en horas.     
+   - Precios: **PRICE**, donde se almacenan los precios para una determinada combinación de cobertura y rango de fechas determinado. Es decir, los precios deben considerar un periodo de vigencia.
+   - Cotización: **QUOTATION**, donde se almacenan las cotizaciones realizadas por un usuario determinado, y que considera categoría, origen, destino, fecha, cantidad de pasajeros. Además, una cotización puede tener los estados "creada", "reserva" y "reserva cancelada". Adicionalmente, las cotizaciones en "reserva" tienen una cobertura asociada y un precio de esa cobertura asociado a la fecha.
 3. En el sistema se deben implementar las siguientes reglas de negocio:
-   - Un USER puede realizar una cotización **(QUOTATION)** indicando como parámetros: 
+    - Un USER puede crear una cotizacion indicando indicando como parámetros:
         - Categoría
         - Origen
         - Destino
         - Fecha de viaje
         - Cantidad de pasajeros
-        Origen y Destino se debn utilizan para filtrar/buscar la(s) coberturas disponibles.
+    La cotizaciónm en estado creado. retorna un ID de QUOTATION y retorna un listado de ID de Coberturas con Precios asociados.
+
+    - Un USER puede crear una reserva a partir de una COTIZACION creada asignandole un ID de Cobertura y el valor del Precio.
+
+    - Un USER puede realizar una consulta de precios ordenados por servicio, proveedor y categoría, así como la capacidad disponible, indicando como parámetros: 
+        - Categoría
+        - Origen
+        - Destino
+        - Fecha de viaje
+        - Cantidad de pasajeros
+        Origen y Destino se deben utilizan para filtrar/buscar la(s) coberturas disponibles.
         Si no existe cobertura se deben indicar con un mensaje de error. 
         Tanto Servicio como Categoría pueden ser parámetros opcionales.
+   - Un USER puede realizar crear una **(QUOTATION)** a partir de la consulta de precios: 
+        - Categoría
+        - Origen
+        - Destino
+        - Fecha de viaje
+        - Cantidad de pasajeros
+
    - Un USER puede cambiar el estado de una cotización **(QUOTATION)** indicando como parámetros: 
         - id de cotización
         - estado de la cotización: "reserva" o "reserva cancelada".
         - para cambiar una cotización a "reserva" se debe verificar si existe capacidad para realizar la reserva, en función de la capacidad del/los vehículos asociados a la cobertura y otras reservas ya realizadas.
-   - El servicio debe retornar:
-        - Listado de precios ordenados por servicio, proveedor y categoría, así como la capacidad disponible. 
+    - Otras consideraciones: 
         - Debe almacenar la cotización con un indentificador único y el estado "creada".
-
-    - Otras consideraciones:
         - Debe implementar validación de cambio de estado: desde "creado" solo se puede pasar a "reserva" y desde "reserva" solo se puede cambiar estado a "reserva cancelada". "reserva cancelada" es un estado final.
         - Debe almacenar la cotización con un indentificador único y el estado "creada".
 
