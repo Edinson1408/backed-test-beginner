@@ -65,22 +65,15 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
 
         y opcionalmente puede agregar el parámetro:
         - Categoría
-
-        La cotización se crea en el estado "creada", retornando un ID de cotización y además retorna un listado de coberturas con precios asociados.
-
-    - Un USER puede crear una reserva a partir de una Cotización, agregándole un ID de Cobertura, un Precio, asociado a la fecha, y cambiando el estado a "reserva".
-
+        La cotización inicialmente queda en estado "creada", retornando un ID de cotización único y además retorna un listado de coberturas con precios asociados, en base al origen-destino y la fecha del viaje de la cotización.
    - Un USER puede cambiar el estado de una cotización **(QUOTATION)** indicando como parámetros: 
         - id de cotización
         - estado de la cotización: "reserva" o "reserva cancelada".
-        - para cambiar una cotización a "reserva" se debe verificar si existe capacidad para realizar la reserva, en función de la capacidad del/los vehículos asociados a la cobertura y otras reservas ya realizadas.
-        
+        - para cambiar una cotización a "reserva" una reserva, se debe asociar la cotización una cobertura y precio, agregándole un ID de Cobertura, un Precio, asociado a la fecha, y cambiando el estado a "reserva".        
+        - además, al momento de cambiar a estado "reserva" se debe verificar si existe capacidad para realizar la reserva, en función de la capacidad del/los vehículos asociados a la cobertura y otras reservas ya realizadas.
     - Otras consideraciones: 
-        - Debe almacenar la cotización con un indentificador único y el estado "creada".
         - Debe implementar validación de cambio de estado: desde "creado" solo se puede pasar a "reserva" y desde "reserva" solo se puede cambiar estado a "reserva cancelada". "reserva cancelada" es un estado final.
-        - Debe almacenar la cotización con un indentificador único y el estado "creada".
-
-4. Desarrolle una API que implemente:
+4. Desarrolle una API que implemente la lógica anterior que además cumpla con los siguiente:
    - CRUD de USER, PLACE, VEHICLE, CATEGORY, PROVIDER, COVERAGE, PRICE, QUOTATION.
    - Listado de QUOTATION por: USER o PROVIDER.
    - Listado de QUOTATION dentro de un rango de fechas.
