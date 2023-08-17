@@ -70,11 +70,11 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
    - Un USER puede cambiar el estado de una cotización **(QUOTATION)** indicando como parámetros: 
         - id de cotización
         - estado de la cotización: "reserva" o "reserva cancelada".
-        - para cambiar una cotización a "reserva" una reserva, se debe asociar la cotización una cobertura y precio, agregándole un ID de Cobertura, un Precio, asociado a la fecha, y cambiando el estado a "reserva".        
+        - para cambiar una cotización a "reserva", se debe asociar la cotización una cobertura y precio, agregándole un ID de Cobertura, un Precio, asociado a la fecha, y cambiando el estado a "reserva".        
         - además, al momento de cambiar a estado "reserva" se debe verificar si existe capacidad para realizar la reserva, en función de la capacidad del/los vehículos asociados a la cobertura y otras reservas ya realizadas.
     - Otras consideraciones: 
         - Debe implementar validación de cambio de estado: desde "creado" solo se puede pasar a "reserva" y desde "reserva" solo se puede cambiar estado a "reserva cancelada". "reserva cancelada" es un estado final.
-4. Desarrolle una API que implemente la lógica anterior que además cumpla con los siguiente:
+4. Desarrolle una API que implemente la lógica anterior y que además cumpla con los siguiente:
    - CRUD de USER, PLACE, VEHICLE, CATEGORY, PROVIDER, COVERAGE, PRICE, QUOTATION.
    - Listado de QUOTATION por: USER o PROVIDER.
    - Listado de QUOTATION dentro de un rango de fechas.
