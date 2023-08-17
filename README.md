@@ -72,7 +72,11 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
    - El servicio debe retornar:
         - Listado de precios ordenados por servicio, proveedor y categoría, así como la capacidad disponible. 
         - Debe almacenar la cotización con un indentificador único y el estado "creada".
-        - Cada 
+
+    - Otras consideraciones:
+        - Debe implementar validación de cambio de estado: desde "creado" solo se puede pasar a "reserva" y desde "reserva" solo se puede cambiar estado a "reserva cancelada". "reserva cancelada" es un estado final.
+        - Debe almacenar la cotización con un indentificador único y el estado "creada".
+
 4. Desarrolle una API que implemente:
    - CRUD de USER, PLACE, VEHICLE, CATEGORY, PROVIDER, COVERAGE, PRICE, QUOTATION.
    - Listado de QUOTATION por: USER o PROVIDER.
