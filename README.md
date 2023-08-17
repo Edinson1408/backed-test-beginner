@@ -65,6 +65,7 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
 
         y opcionalmente puede agregar el parámetro:
         - Categoría
+          
         La cotización inicialmente queda en estado "creada", retornando un ID de cotización único y además retorna un listado de coberturas con precios asociados, en base al origen-destino y la fecha del viaje de la cotización.
    - Un USER puede cambiar el estado de una cotización **(QUOTATION)** indicando como parámetros: 
         - id de cotización
