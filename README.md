@@ -57,7 +57,6 @@ Una vez comenzada la revisión de tu prueba podríamos enviarte algunas pregunta
    - Cotización: **QUOTATION**, donde se almacenan las cotizaciones realizadas por un usuario determinado, y que considera categoría, origen, destino, fecha, cantidad de pasajeros. Además, una cotización puede tener los estados "creada", "reserva" y "reserva cancelada". Adicionalmente, las cotizaciones en "reserva" tienen una cobertura asociada y un precio de esa cobertura asociado a la fecha.
 3. En el sistema se deben implementar las siguientes reglas de negocio:
     - Un USER puede crear una cotizacion indicando indicando como parámetros:
-        - Categoría
         - Origen
         - Destino
         - Fecha de viaje
